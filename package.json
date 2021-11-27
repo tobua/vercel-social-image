@@ -1,0 +1,30 @@
+{
+  "name": "vercel-social-image",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "next": "12.0.4",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "printWidth": 100
+  },
+  "eslintConfig": {
+    "extends": "next/core-web-vitals"
+  },
+  "devDependencies": {
+    "@types/node": "16.11.10",
+    "@types/react": "17.0.37",
+    "eslint": "7.32.0",
+    "eslint-config-next": "12.0.4",
+    "prettier": "^2.5.0",
+    "typescript": "4.5.2"
+  }
+}
