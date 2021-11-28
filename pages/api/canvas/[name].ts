@@ -10,8 +10,11 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
 
   const now = new Date().toLocaleDateString('en-US')
 
+  const width = 1128
+  const height = 600
+
   // Also 1200 x 627 (same ratio, exact size varies)
-  const canvas = createCanvas(1128, 600)
+  const canvas = createCanvas(width, height)
   const context = canvas.getContext('2d')
 
   context.font = `bold 70pt 'Helvetica'`
@@ -22,7 +25,14 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
   context.fillStyle = '#000'
   context.fillText(now, 50, 500)
 
+  context.beginPath()
+  context.lineWidth = 3
+  context.strokeStyle = 'lightgray'
+  context.rect(20, 20, width - 40, height - 40)
+  context.stroke()
+
   const buffer = canvas.toBuffer('image/png')
+  console.log('canvas', Buffer.byteLength(buffer))
   response.writeHead(200, {
     'Content-Type': 'image/png',
     'Content-Length': Buffer.byteLength(buffer),

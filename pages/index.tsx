@@ -18,9 +18,15 @@ const Home: NextPage = () => {
 
         <h2>Generated with canvas</h2>
         <p>
-          API <pre>/api/canvas/[name].png</pre>
+          API <span style={{ fontFamily: 'monospace' }}>/api/canvas/[name].png</span>
         </p>
-        <img src="/api/canvas/canvi.png" alt="Generated with canvas" />
+        <img key="1" width="600px" src="/api/canvas/canving.png" alt="Generated with canvas" />
+
+        <h2>Generated with from SVG</h2>
+        <p>
+          API <span style={{ fontFamily: 'monospace' }}>/api/svg/[name].png</span>
+        </p>
+        <img key="2" width="600px" src="/api/svg/svging.png" alt="Generated from SVG" />
       </main>
 
       <footer className={styles.footer}>
