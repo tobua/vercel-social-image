@@ -13,6 +13,20 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
   const width = 1128
   const height = 600
 
+  if (
+    process.env.LD_LIBRARY_PATH == null ||
+    !process.env.LD_LIBRARY_PATH.includes(`${process.env.PWD}/node_modules/canvas/build/Release:`)
+  ) {
+    console.log('in')
+    process.env.LD_LIBRARY_PATH = `${process.env.PWD}/node_modules/canvas/build/Release:${
+      process.env.LD_LIBRARY_PATH || ''
+    }`
+  } else {
+    console.log('out')
+  }
+
+  console.log(process.env.LD_LIBRARY_PATH)
+
   // Also 1200 x 627 (same ratio, exact size varies)
   const canvas = createCanvas(width, height)
   const context = canvas.getContext('2d')

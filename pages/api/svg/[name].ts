@@ -13,7 +13,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
   const width = 1128
   const height = 600
 
-  const svg = `<svg width="${width}" height="${height}">
+  const svg = `<svg version="1.1" width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
     <text x="50" y="400" font-weight="bold" font-size="70px">${name}</text>
     <text x="50" y="500" font-family="sans-serif" font-size="25px">${now}</text>
     <rect x="20" y="20" fill="none" stroke="lightgray" stroke-width="3" width="${
