@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -16,17 +17,34 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>vercel-social-image</h1>
         <p>Demonstrates different ways to generate dynamic images using next deployed to vercel.</p>
 
+        <h2>Generated from Browser</h2>
+        <p>
+          API <span style={{ fontFamily: 'monospace' }}>/api/browser/[name].png</span>
+        </p>
+        <Link href="/api/browser/browsering.png">
+          <a>
+            <img width="600px" src="/api/browser/browsering.png" alt="Generated from Browser" />
+          </a>
+        </Link>
         <h2>Generated with canvas</h2>
         <p>
           API <span style={{ fontFamily: 'monospace' }}>/api/canvas/[name].png</span>
         </p>
-        <img key="1" width="600px" src="/api/canvas/canving.png" alt="Generated with canvas" />
+        <Link href="/api/canvas/canving.png">
+          <a>
+            <img width="600px" src="/api/canvas/canving.png" alt="Generated with canvas" />
+          </a>
+        </Link>
 
-        <h2>Generated with from SVG</h2>
+        <h2>Generated from SVG</h2>
         <p>
           API <span style={{ fontFamily: 'monospace' }}>/api/svg/[name].png</span>
         </p>
-        <img key="2" width="600px" src="/api/svg/svging.png" alt="Generated from SVG" />
+        <Link href="/api/svg/svging.png">
+          <a>
+            <img width="600px" src="/api/svg/svging.png" alt="Generated from SVG" />
+          </a>
+        </Link>
       </main>
 
       <footer className={styles.footer}>
