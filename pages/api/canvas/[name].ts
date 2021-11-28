@@ -32,7 +32,6 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
   context.stroke()
 
   const buffer = canvas.toBuffer('image/png')
-  console.log('canvas', Buffer.byteLength(buffer))
   response.writeHead(200, {
     'Content-Type': 'image/png',
     'Content-Length': Buffer.byteLength(buffer),

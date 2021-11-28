@@ -3,13 +3,15 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "vercel-build": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/ && npm run build",
     "start": "next start"
   },
   "dependencies": {
     "@types/sharp": "^0.29.4",
     "canvas": "^2.8.0",
+    "chrome-aws-lambda": "^10.1.0",
     "next": "12.0.4",
-    "playwright-chromium": "^1.16.3",
+    "puppeteer": "^12.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "sharp": "^0.29.3"
@@ -23,6 +25,7 @@
     "extends": "next/core-web-vitals"
   },
   "devDependencies": {
+    "playwright-chromium": "^1.16.3",
     "@types/node": "16.11.10",
     "@types/react": "17.0.37",
     "eslint": "8.3.0",

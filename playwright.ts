@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import chromium from 'chrome-aws-lambda'
+import playwright from 'playwright-chromium'
 
 const markup = (name: string, date: string) => `<div class="content">
     <h1 class="title">${name}</h1>
@@ -34,7 +34,7 @@ body {
 .title {
     display: flex;
     align-items: flex-end;
-    font-size: 72px;
+    font-size: 50px;
     height: 200px;
 }
 .summary {
@@ -44,44 +44,23 @@ body {
     height: 100px;
 }`
 
-export default async function handler(request: NextApiRequest, response: NextApiResponse) {
-  let { name } = request.query
-  if (Array.isArray(name)) {
-    name = name.join('')
-  }
-  name = name.replace('.png', '')
-
+export const createScreenshot = async (name: string) => {
   const now = new Date().toLocaleDateString('en-US')
   const dimensions = { width: 1128, height: 600 }
 
-  const browser = await chromium.puppeteer.launch({
-    args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath,
-    headless: true,
-    ignoreHTTPSErrors: true,
-  })
+  const browser = await playwright.chromium.launch()
+  const context = await browser.newContext()
+  const page = await context.newPage()
 
-  const page = await browser.newPage()
-  page.setViewport(dimensions)
+  page.setViewportSize(dimensions)
   page.setContent(`<html>
   <body>
-    ${markup(name, now)}
+    ${markup(`Generated During Build: ${name}`, now)}
   </body>
   <style>
     ${styles(dimensions)}
   </style>
 </html>`)
 
-  const screenshot = await page.screenshot()
-
-  if (!screenshot) {
-    return response.status(500).send({ error: 'Failed to generate image' })
-  }
-
-  response.writeHead(200, {
-    'Content-Type': 'image/png',
-    'Content-Length': Buffer.byteLength(screenshot),
-  })
-  response.end(screenshot)
+  await page.screenshot({ path: `public/build-${name}.png` })
 }

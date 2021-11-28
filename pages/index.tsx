@@ -1,8 +1,18 @@
-import type { NextPage } from 'next'
+import type { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
+import { createScreenshot } from '../playwright'
+
+export const getStaticProps: GetStaticProps = async () => {
+  // Generate images during build and place them in /public.
+  if (process.env.NODE_ENV !== 'development') {
+    const promises = ['first', 'second', 'third'].map((post) => createScreenshot(post))
+    await Promise.all(promises)
+  }
+  return { props: {} }
+}
 
 const Home: NextPage = () => {
   return (
@@ -17,7 +27,7 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>vercel-social-image</h1>
         <p>Demonstrates different ways to generate dynamic images using next deployed to vercel.</p>
 
-        <h2>Generated from Browser</h2>
+        <h2>Generated using browser with Puppeteer</h2>
         <p>
           API <span style={{ fontFamily: 'monospace' }}>/api/browser/[name].png</span>
         </p>
@@ -43,6 +53,20 @@ const Home: NextPage = () => {
         <Link href="/api/svg/svging.png">
           <a>
             <img width="600px" src="/api/svg/svging.png" alt="Generated from SVG" />
+          </a>
+        </Link>
+        <h2>Generated using browser with Playwright during build</h2>
+        <p>
+          API <span style={{ fontFamily: 'monospace' }}>/build-*.png</span>
+        </p>
+        <Link href="/build-first.png">
+          <a>
+            <Image
+              width={600}
+              height={300}
+              src="/build-first.png"
+              alt="Generated from Browser at build time"
+            />
           </a>
         </Link>
       </main>
