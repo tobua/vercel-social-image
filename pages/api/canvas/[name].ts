@@ -1,3 +1,6 @@
+process.env.LD_LIBRARY_PATH = '/var/task/node_modules/canvas/build/Release'
+process.env.LD_PRELOAD = '/var/task/node_modules/canvas/build/Release/libz.so.1'
+
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createCanvas } from 'canvas'
 
@@ -24,8 +27,6 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
   // } else {
   //   console.log('out')
   // }
-
-  process.env.LD_PRELOAD = '/var/task/node_modules/canvas/build/Release/libz.so.1'
 
   console.log(process.env.LD_LIBRARY_PATH)
 
