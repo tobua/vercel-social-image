@@ -26,6 +26,8 @@ export default async function handler(request: NextApiRequest, response: NextApi
     }" height="${height - 40}" rx="20" />
   </svg>`
 
+  process.env.FC_DEBUG = 'true'
+
   // https://github.com/lovell/sharp/issues/1875
   // https://askubuntu.com/questions/492033/fontconfig-error-cannot-load-default-config-file
   // process.env.FONTCONFIG_PATH = '/etc/fonts'
