@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { createCanvas } from 'canvas'
+// import { createCanvas } from 'canvas'
 
 export default function handler(request: NextApiRequest, response: NextApiResponse) {
   let { name } = request.query
@@ -10,45 +10,47 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
 
   const now = new Date().toLocaleDateString('en-US')
 
-  const width = 1128
-  const height = 600
+  response.json({ success: false })
 
-  if (
-    process.env.LD_LIBRARY_PATH == null ||
-    !process.env.LD_LIBRARY_PATH.includes(`${process.env.PWD}/node_modules/canvas/build/Release:`)
-  ) {
-    console.log('in')
-    process.env.LD_LIBRARY_PATH = `${process.env.PWD}/node_modules/canvas/build/Release:${
-      process.env.LD_LIBRARY_PATH || ''
-    }`
-  } else {
-    console.log('out')
-  }
+  // const width = 1128
+  // const height = 600
 
-  console.log(process.env.LD_LIBRARY_PATH)
+  // if (
+  //   process.env.LD_LIBRARY_PATH == null ||
+  //   !process.env.LD_LIBRARY_PATH.includes(`${process.env.PWD}/node_modules/canvas/build/Release:`)
+  // ) {
+  //   console.log('in')
+  //   process.env.LD_LIBRARY_PATH = `${process.env.PWD}/node_modules/canvas/build/Release:${
+  //     process.env.LD_LIBRARY_PATH || ''
+  //   }`
+  // } else {
+  //   console.log('out')
+  // }
 
-  // Also 1200 x 627 (same ratio, exact size varies)
-  const canvas = createCanvas(width, height)
-  const context = canvas.getContext('2d')
+  // console.log(process.env.LD_LIBRARY_PATH)
 
-  context.font = `bold 70pt 'Helvetica'`
-  context.fillStyle = '#000'
-  context.fillText(name, 50, 400)
+  // // Also 1200 x 627 (same ratio, exact size varies)
+  // const canvas = createCanvas(width, height)
+  // const context = canvas.getContext('2d')
 
-  context.font = `regular 20pt 'Helvetica'`
-  context.fillStyle = '#000'
-  context.fillText(now, 50, 500)
+  // context.font = `bold 70pt 'Helvetica'`
+  // context.fillStyle = '#000'
+  // context.fillText(name, 50, 400)
 
-  context.beginPath()
-  context.lineWidth = 3
-  context.strokeStyle = 'lightgray'
-  context.rect(20, 20, width - 40, height - 40)
-  context.stroke()
+  // context.font = `regular 20pt 'Helvetica'`
+  // context.fillStyle = '#000'
+  // context.fillText(now, 50, 500)
 
-  const buffer = canvas.toBuffer('image/png')
-  response.writeHead(200, {
-    'Content-Type': 'image/png',
-    'Content-Length': Buffer.byteLength(buffer),
-  })
-  response.end(buffer)
+  // context.beginPath()
+  // context.lineWidth = 3
+  // context.strokeStyle = 'lightgray'
+  // context.rect(20, 20, width - 40, height - 40)
+  // context.stroke()
+
+  // const buffer = canvas.toBuffer('image/png')
+  // response.writeHead(200, {
+  //   'Content-Type': 'image/png',
+  //   'Content-Length': Buffer.byteLength(buffer),
+  // })
+  // response.end(buffer)
 }

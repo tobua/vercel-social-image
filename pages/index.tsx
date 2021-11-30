@@ -36,7 +36,7 @@ const Home: NextPage = () => {
             <img width="600px" src="/api/browser/browsering.png" alt="Generated from Browser" />
           </a>
         </Link>
-        <h2>Generated with canvas</h2>
+        {/* <h2>Generated with canvas</h2>
         <p>
           API <span style={{ fontFamily: 'monospace' }}>/api/canvas/[name].png</span>
         </p>
@@ -44,7 +44,7 @@ const Home: NextPage = () => {
           <a>
             <img width="600px" src="/api/canvas/canving.png" alt="Generated with canvas" />
           </a>
-        </Link>
+        </Link> */}
 
         <h2>Generated from SVG</h2>
         <p>

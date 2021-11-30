@@ -9,7 +9,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
   name = name.replace('.png', '')
 
   const now = new Date().toLocaleDateString('en-US')
-  // export FONTCONFIG_PATH=/etc/fonts
+
   const width = 1128
   const height = 600
 
@@ -23,7 +23,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
 
   // https://github.com/lovell/sharp/issues/1875
   // https://askubuntu.com/questions/492033/fontconfig-error-cannot-load-default-config-file
-  process.env.FONTCONFIG_PATH = '/etc/fonts'
+  // process.env.FONTCONFIG_PATH = '/etc/fonts'
 
   const input = Buffer.from(svg)
   const image = await sharp(input).png().toBuffer()
