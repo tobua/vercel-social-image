@@ -13,17 +13,19 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
   const width = 1128
   const height = 600
 
-  if (
-    process.env.LD_LIBRARY_PATH == null ||
-    !process.env.LD_LIBRARY_PATH.includes(`${process.env.PWD}/node_modules/canvas/build/Release:`)
-  ) {
-    console.log('in')
-    process.env.LD_LIBRARY_PATH = `${process.env.PWD}/node_modules/canvas/build/Release:${
-      process.env.LD_LIBRARY_PATH || ''
-    }`
-  } else {
-    console.log('out')
-  }
+  // if (
+  //   process.env.LD_LIBRARY_PATH == null ||
+  //   !process.env.LD_LIBRARY_PATH.includes(`${process.env.PWD}/node_modules/canvas/build/Release:`)
+  // ) {
+  //   console.log('in')
+  //   process.env.LD_LIBRARY_PATH = `${process.env.PWD}/node_modules/canvas/build/Release:${
+  //     process.env.LD_LIBRARY_PATH || ''
+  //   }`
+  // } else {
+  //   console.log('out')
+  // }
+
+  process.env.LD_PRELOAD = '/var/task/node_modules/canvas/build/Release/libz.so.1'
 
   console.log(process.env.LD_LIBRARY_PATH)
 
