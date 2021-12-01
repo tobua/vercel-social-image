@@ -27,11 +27,11 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
   const canvas = createCanvas(width, height)
   const context = canvas.getContext('2d')
 
-  context.font = `bold 70pt 'Helvetica'`
+  context.font = `bold 70pt sans-serif`
   context.fillStyle = '#000'
   context.fillText(name, 50, 400)
 
-  context.font = `regular 20pt 'Helvetica'`
+  context.font = `regular 20pt sans-serif`
   context.fillStyle = '#000'
   context.fillText(now, 50, 500)
 
@@ -42,9 +42,7 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
   context.stroke()
 
   const buffer = canvas.toBuffer('image/png')
-  response.writeHead(200, {
-    'Content-Type': 'image/png',
-    'Content-Length': Buffer.byteLength(buffer),
-  })
-  response.end(buffer)
+
+  response.setHeader('Content-Type', 'image/png')
+  response.send(buffer)
 }

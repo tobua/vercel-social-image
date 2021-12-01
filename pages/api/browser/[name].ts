@@ -79,9 +79,6 @@ export default async function handler(request: NextApiRequest, response: NextApi
     return response.status(500).send({ error: 'Failed to generate image' })
   }
 
-  response.writeHead(200, {
-    'Content-Type': 'image/png',
-    'Content-Length': Buffer.byteLength(screenshot),
-  })
-  response.end(screenshot)
+  response.setHeader('Content-Type', 'image/png')
+  response.send(screenshot)
 }
