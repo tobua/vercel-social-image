@@ -62,7 +62,7 @@ const Home: NextPage = () => {
         <Link href="/build-first.png">
           <a>
             <Image
-              width={600}
+              width={564}
               height={300}
               src="/build-first.png"
               alt="Generated from Browser at build time"
