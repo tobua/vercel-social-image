@@ -1,5 +1,5 @@
-// process.env.LD_LIBRARY_PATH = '/var/task/node_modules/canvas/build/Release'
-// process.env.LD_PRELOAD = '/var/task/node_modules/canvas/build/Release/libz.so.1'
+process.env.LD_LIBRARY_PATH = '/var/task/node_modules/canvas/build/Release'
+process.env.LD_PRELOAD = '/var/task/node_modules/canvas/build/Release/libz.so.1'
 
 console.log(process.env.LD_LIBRARY_PATH, process.env.LD_PRELOAD, 'path')
 
@@ -12,6 +12,11 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
     name = name.join('')
   }
   name = name.replace('.png', '')
+
+  process.env.LD_LIBRARY_PATH = '/var/task/node_modules/canvas/build/Release'
+  process.env.LD_PRELOAD = '/var/task/node_modules/canvas/build/Release/libz.so.1'
+
+  console.log(process.env.LD_LIBRARY_PATH, process.env.LD_PRELOAD, 'path')
 
   const now = new Date().toLocaleDateString('en-US')
 
