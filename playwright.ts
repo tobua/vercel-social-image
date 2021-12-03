@@ -1,4 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 import playwright from 'playwright-chromium'
 
 const markup = (name: string, date: string) => `<div class="content">
