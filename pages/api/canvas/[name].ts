@@ -1,7 +1,13 @@
+import { join } from 'path'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Canvas } from '@napi-rs/canvas'
+import { Canvas, GlobalFonts } from '@napi-rs/canvas'
+
+console.log(__dirname, 'folder')
+
+GlobalFonts.registerFromPath(join(__dirname, 'canvas', 'Arial.ttf'))
 
 export default function handler(request: NextApiRequest, response: NextApiResponse) {
+  console.log(__dirname, 'folder1')
   let { name } = request.query
   if (Array.isArray(name)) {
     name = name.join('')
@@ -17,11 +23,11 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
   const canvas = new Canvas(width, height)
   const context = canvas.getContext('2d')
 
-  context.font = `bold 70pt sans-serif`
+  context.font = `bold 70px Arial`
   context.fillStyle = '#000'
   context.fillText(name, 50, 400)
 
-  context.font = `regular 20pt sans-serif`
+  context.font = `regular 20px Arial`
   context.fillStyle = '#000'
   context.fillText(now, 50, 500)
 
