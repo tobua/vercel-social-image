@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import sharp from 'sharp'
 
+process.env.FONTCONFIG_PATH = '/var/task/.next/server/pages/api/svg/fonts'
+
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   let { name } = request.query
   if (Array.isArray(name)) {
@@ -14,8 +16,8 @@ export default async function handler(request: NextApiRequest, response: NextApi
   const height = 600
 
   const svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-    <text x="50" y="400" font-size="70px" font-weight="bold">${name}</text>
-    <text x="50" y="500" font-size="25px">${now}</text>
+    <text x="50" y="400" font-family="Arial" font-size="70px" font-weight="bold">${name}</text>
+    <text x="50" y="500" font-family="Arial" font-size="30px">${now}</text>
     <rect x="20" y="20" fill="none" stroke="lightgray" stroke-width="3" width="${
       width - 40
     }" height="${height - 40}" rx="20"/>
