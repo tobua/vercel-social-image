@@ -1,10 +1,14 @@
-import { join } from 'path'
+import { existsSync } from 'fs'
+import { resolve, join } from 'path'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Canvas, GlobalFonts } from '@napi-rs/canvas'
 
+console.log('canvas', existsSync(join(__dirname, 'Arial.ttf')))
+resolve(join(__dirname, 'Arial.ttf'))
 GlobalFonts.registerFromPath(join(__dirname, 'Arial.ttf'))
 
 export default function handler(request: NextApiRequest, response: NextApiResponse) {
+  console.log('canvas1', __dirname, process.cwd(), existsSync(join(__dirname, 'Arial.ttf')))
   let { name } = request.query
   if (Array.isArray(name)) {
     name = name.join('')
