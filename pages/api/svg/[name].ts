@@ -4,12 +4,11 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import sharp from 'sharp'
 
 console.log('svg', process.cwd(), __dirname)
-
-// process.env.FONTCONFIG_PATH = '/var/task/.next/server/pages/api/svg/fonts'
+console.log(join(process.cwd(), '/fonts'), existsSync(join(process.cwd(), '/fonts')))
+process.env.FONTCONFIG_PATH = join(process.cwd(), '/fonts')
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
-  process.env.FONTCONFIG_PATH = join(process.cwd(), '/fonts')
-  console.group('svg1', existsSync(join(process.cwd(), 'fonts', 'fonts.conf')))
+  console.log(process.env.FONTCONFIG_PATH, 'path')
   let { name } = request.query
   if (Array.isArray(name)) {
     name = name.join('')
@@ -23,7 +22,8 @@ export default async function handler(request: NextApiRequest, response: NextApi
 
   const svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
     <text x="50" y="400" font-family="Arial" font-size="70px" font-weight="bold">${name}</text>
-    <text x="50" y="500" font-family="Arial" font-size="30px">${now}</text>
+    <text x="50" y="450" font-family="sans-serif" font-size="30px">${now}</text>
+    <text x="50" y="500" font-family="Arial, sans-serif" font-size="30px">${now}</text>
     <rect x="20" y="20" fill="none" stroke="lightgray" stroke-width="3" width="${
       width - 40
     }" height="${height - 40}" rx="20"/>
