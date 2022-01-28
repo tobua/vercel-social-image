@@ -3,10 +3,10 @@
     "silent": true
   },
   "functions": {
-    "api/canvas/[name].ts": {
+    "api/canvas/[name].js": {
       "includeFiles": "Arial.ttf"
     },
-    "api/svg/[name].ts": {
+    "api/svg/[name].js": {
       "includeFiles": "fonts/*"
     }
   }
