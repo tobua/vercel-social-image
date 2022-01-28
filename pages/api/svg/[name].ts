@@ -24,9 +24,9 @@ export default async function handler(request: NextApiRequest, response: NextApi
     <text x="50" y="400" font-family="Arial" font-size="70px" font-weight="bold">${name}</text>
     <text x="50" y="450" font-family="sans-serif" font-size="30px">${now}</text>
     <text x="50" y="500" font-family="Arial, sans-serif" font-size="30px">${now}</text>
-    <rect x="20" y="20" fill="none" stroke="lightgray" stroke-width="3" width="${
-      width - 40
-    }" height="${height - 40}" rx="20"/>
+    <rect x="20" y="20" fill="none" stroke="gray" stroke-width="3" width="${width - 40}" height="${
+    height - 40
+  }" rx="20"/>
   </svg>`
 
   const input = Buffer.from(svg)

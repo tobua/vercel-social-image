@@ -13,7 +13,8 @@ function roundRect(
   height: number,
   radius: number | { tl: number; tr: number; br: number; bl: number },
   fill: string,
-  stroke: string | boolean
+  stroke: string | boolean,
+  strokeWidth: number = 1
 ) {
   if (typeof stroke === 'undefined') {
     stroke = true
@@ -42,9 +43,14 @@ function roundRect(
   context.quadraticCurveTo(x, y, x + radius.tl, y)
   context.closePath()
   if (fill) {
+    context.fillStyle = fill
     context.fill()
   }
+  if (typeof stroke === 'string') {
+    context.strokeStyle = stroke
+  }
   if (stroke) {
+    context.lineWidth = strokeWidth
     context.stroke()
   }
 }
@@ -65,6 +71,8 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
   const canvas = new Canvas(width, height)
   const context = canvas.getContext('2d')
 
+  roundRect(context, 20, 20, width - 40, height - 40, 20, '#FFF', 'gray', 3)
+
   context.font = `bold 80px Arial`
   context.fillStyle = '#000'
   context.fillText(name, 50, 400)
@@ -72,14 +80,6 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
   context.font = `regular 35px Arial`
   context.fillStyle = '#000'
   context.fillText(now, 50, 500)
-
-  roundRect(context, 20, 20, width - 40, height - 40, 20, '#FFF', 'gray')
-
-  // context.beginPath()
-  // context.lineWidth = 3
-  // context.strokeStyle = 'gray'
-  // context.rect(20, 20, width - 40, height - 40)
-  // context.stroke()
 
   const buffer = canvas.toBuffer('image/png')
 

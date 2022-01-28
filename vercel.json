@@ -1,13 +1,5 @@
 {
   "github": {
     "silent": true
-  },
-  "functions": {
-    "pages/api/canvas/[name].js": {
-      "includeFiles": "Arial.ttf"
-    },
-    "pages/api/svg/[name].js": {
-      "includeFiles": "fonts/*"
-    }
   }
 }

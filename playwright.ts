@@ -19,7 +19,7 @@ body {
     font-family: -apple-system, Helvetica, Arial, sans-serif;
 }
 .content {
-    border : 2px solid gray;
+    border : 3px solid gray;
     border-radius : 20px;
     box-sizing: border-box;
     display : flex;
