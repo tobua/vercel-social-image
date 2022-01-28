@@ -8,13 +8,17 @@ console.log('svg', process.cwd(), __dirname)
 resolve(__dirname, 'fonts', 'fonts.conf')
 resolve(__dirname, 'fonts', 'Arial.ttf')
 
-process.env.FONTCONFIG_PATH = '/var/task/.next/server/pages/api/svg/fonts'
+// process.env.FONTCONFIG_PATH = '/var/task/.next/server/pages/api/svg/fonts'
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
-  process.env.FONTCONFIG_PATH = join(__dirname, '/fonts')
+  process.env.FONTCONFIG_PATH = join(process.cwd(), '/fonts')
   console.log('svg0', __dirname, process.cwd(), join(__dirname, '/fonts'))
-  console.group('svg1', existsSync(join(__dirname, 'fonts', 'fonts.conf')))
-  console.log('svg2', readdirSync(process.cwd()), readdirSync(join(process.cwd(), '.next')))
+  console.group('svg1', existsSync(join(process.cwd(), 'fonts', 'fonts.conf')))
+  console.log(
+    'svg2',
+    existsSync(join(process.cwd(), 'fonts', 'fonts.conf')),
+    existsSync(join(process.cwd(), 'fonts', 'Arial.ttf'))
+  )
   let { name } = request.query
   if (Array.isArray(name)) {
     name = name.join('')
