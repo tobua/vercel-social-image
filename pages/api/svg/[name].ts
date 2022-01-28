@@ -15,8 +15,24 @@ export default async function handler(request: NextApiRequest, response: NextApi
   const height = 600
 
   const svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-    <text x="50" y="400" font-family="Arial" font-size="70px" font-weight="bold">${name}</text>
-    <text x="50" y="450" font-family="sans-serif" font-size="30px">${now}</text>
+    <style type="text/css">
+      @font-face {
+        font-family: Arial;
+        src: './fonts/Arial.ttf';
+      }
+      @font-face {
+        font-family: Arial1;
+        src: '/var/task/fonts/Arial.ttf';
+      }
+      @font-face {
+        font-family: Arial2;
+        src: './Arial.ttf';
+      }
+    </style>
+    <text x="50" y="400" font-family="Arial" font-size="70" font-weight="bold">${name}</text>
+    <text x="50" y="430" font-family="Arial1" font-size="30">${now}</text>
+    <text x="50" y="450" font-family="Arial2" font-size="30">${now}</text>
+    <text x="50" y="470" font-family="sans-serif" font-size="30px">${now}</text>
     <text x="50" y="500" font-family="Arial, sans-serif" font-size="30px">${now}</text>
     <rect x="20" y="20" fill="none" stroke="gray" stroke-width="3" width="${width - 40}" height="${
     height - 40
