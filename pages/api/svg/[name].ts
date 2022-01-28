@@ -1,11 +1,5 @@
-import { existsSync } from 'fs'
-import { join } from 'path'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import sharp from 'sharp'
-
-console.log('svg', process.cwd(), __dirname)
-console.log(join(process.cwd(), '/fonts'), existsSync(join(process.cwd(), '/fonts')))
-process.env.FONTCONFIG_PATH = join(process.cwd(), '/fonts')
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   console.log(process.env.FONTCONFIG_PATH, 'path')
