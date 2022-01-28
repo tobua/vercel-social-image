@@ -1,11 +1,10 @@
 import { existsSync } from 'fs'
-import { resolve, join } from 'path'
+import { join } from 'path'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Canvas, GlobalFonts } from '@napi-rs/canvas'
 
-console.log('canvas', existsSync(join(__dirname, 'Arial.ttf')))
-resolve(join(__dirname, 'Arial.ttf'))
-// GlobalFonts.registerFromPath(join(__dirname, 'Arial.ttf'))
+console.log('canvas', __dirname, process.cwd(), existsSync(join(__dirname, 'Arial.ttf')))
+GlobalFonts.registerFromPath(join(process.cwd(), 'fonts/Arial.ttf'))
 
 export default function handler(request: NextApiRequest, response: NextApiResponse) {
   console.log(
@@ -14,7 +13,6 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
     process.cwd(),
     existsSync(join(process.cwd(), 'fonts/Arial.ttf'))
   )
-  GlobalFonts.registerFromPath(join(process.cwd(), 'fonts/Arial.ttf'))
   let { name } = request.query
   if (Array.isArray(name)) {
     name = name.join('')
