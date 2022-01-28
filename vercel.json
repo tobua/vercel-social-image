@@ -1,5 +1,13 @@
 {
   "github": {
     "silent": true
+  },
+  "functions": {
+    "api/canvas/[name].ts": {
+      "includeFiles": "Arial.ttf"
+    },
+    "api/svg/[name].ts": {
+      "includeFiles": "fonts/*"
+    }
   }
 }

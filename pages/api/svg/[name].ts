@@ -3,16 +3,17 @@ import { resolve, join } from 'path'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import sharp from 'sharp'
 
-console.log('svg', process.cwd())
+console.log('svg', process.cwd(), __dirname)
 
-resolve(process.cwd(), 'fonts', 'fonts.conf')
-resolve(process.cwd(), 'fonts', 'Arial.ttf')
+resolve(__dirname, 'fonts', 'fonts.conf')
+resolve(__dirname, 'fonts', 'Arial.ttf')
 
 process.env.FONTCONFIG_PATH = '/var/task/.next/server/pages/api/svg/fonts'
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   process.env.FONTCONFIG_PATH = '/var/task/.next/server/pages/api/svg/fonts'
-  console.group('svg1', existsSync(join(process.cwd(), 'fonts', 'fonts.conf')))
+  console.log('svg0', __dirname, process.cwd())
+  console.group('svg1', existsSync(join(__dirname, 'fonts', 'fonts.conf')))
   let { name } = request.query
   if (Array.isArray(name)) {
     name = name.join('')
