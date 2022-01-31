@@ -16,8 +16,7 @@ body {
     align-items : center;
     justify-content : center;
     margin: 0;
-    background: #F5F5F5;
-    font-family: -apple-system, Helvetica, Arial, sans-serif;
+    font-family: Arial, sans-serif;
 }
 .content {
     border : 3px solid gray;
@@ -26,22 +25,20 @@ body {
     display : flex;
     flex-direction : column;
     justify-content: flex-end;
-    height : calc(100% - 80px);
-    margin : 40px;
+    height : calc(100% - 40px);
+    margin : 20px;
     padding : 40px;
-    width : calc(100% - 80px);
+    width : calc(100% - 40px);
 }
 .title {
     display: flex;
     align-items: flex-end;
     font-size: 72px;
-    height: 200px;
 }
 .summary {
     display: flex;
     align-items: flex-end;
     font-size: 34px;
-    height: 100px;
 }`
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {

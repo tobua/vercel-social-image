@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import type { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -33,7 +34,12 @@ const Home: NextPage = () => {
         </p>
         <Link href="/api/browser/browsering.png">
           <a>
-            <img width="600px" src="/api/browser/browsering.png" alt="Generated from Browser" />
+            <img
+              width={600}
+              height={319}
+              src="/api/browser/browsering.png"
+              alt="Generated from Browser"
+            />
           </a>
         </Link>
         <h2>Generated with canvas</h2>
@@ -42,7 +48,12 @@ const Home: NextPage = () => {
         </p>
         <Link href="/api/canvas/canving.png">
           <a>
-            <img width="600px" src="/api/canvas/canving.png" alt="Generated with canvas" />
+            <img
+              width={600}
+              height={319}
+              src="/api/canvas/canving.png"
+              alt="Generated with canvas"
+            />
           </a>
         </Link>
 
@@ -52,7 +63,7 @@ const Home: NextPage = () => {
         </p>
         <Link href="/api/svg/svging.png">
           <a>
-            <img width="600px" src="/api/svg/svging.png" alt="Generated from SVG" />
+            <img width={600} height={319} src="/api/svg/svging.png" alt="Generated from SVG" />
           </a>
         </Link>
         <h2>Generated using browser with Playwright during build</h2>
@@ -62,8 +73,8 @@ const Home: NextPage = () => {
         <Link href="/build-first.png">
           <a>
             <Image
-              width={564}
-              height={300}
+              width={600}
+              height={319}
               src="/build-first.png"
               alt="Generated from Browser at build time"
             />
