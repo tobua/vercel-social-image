@@ -28,7 +28,6 @@ export default async function handler(request: NextApiRequest, response: NextApi
       loadSystemFonts: false,
       defaultFontFamily: 'Arial',
     },
-    logLevel: 'debug',
   })
 
   response.setHeader('Content-Type', 'image/png')
