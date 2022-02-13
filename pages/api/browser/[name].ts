@@ -51,12 +51,17 @@ export default async function handler(request: NextApiRequest, response: NextApi
   const now = new Date().toLocaleDateString('en-US')
   const dimensions = { width: 1128, height: 600 }
 
+  console.log(chromium.args)
+  console.log(chromium.defaultViewport)
+  const executablePath = await chromium.executablePath
+  console.log(executablePath)
+
   const browser = await chromium.puppeteer.launch({
-    args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
+    args: chromium.args,
     defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath,
+    executablePath,
     headless: true,
-    ignoreHTTPSErrors: true,
+    // ignoreHTTPSErrors: true,
   })
 
   const page = await browser.newPage()
