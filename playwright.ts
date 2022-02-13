@@ -1,4 +1,5 @@
 import playwright from 'playwright-chromium'
+import { width, height } from './helper'
 
 const markup = (name: string, date: string) => `<div class="content">
     <h1 class="title">${name}</h1>
@@ -42,7 +43,7 @@ body {
 
 export const createScreenshot = async (name: string) => {
   const now = new Date().toLocaleDateString('en-US')
-  const dimensions = { width: 1128, height: 600 }
+  const dimensions = { width, height }
 
   const browser = await playwright.chromium.launch()
   const context = await browser.newContext()
