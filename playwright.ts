@@ -15,7 +15,7 @@ body {
     align-items : center;
     justify-content : center;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .content {
     border : 3px solid gray;
@@ -51,7 +51,7 @@ export const createScreenshot = async (name: string) => {
   page.setViewportSize(dimensions)
   page.setContent(`<html>
   <body>
-    ${markup(`Generated During Build: ${name}`, now)}
+    ${markup(`Playwright: ${name}`, now)}
   </body>
   <style>
     ${styles(dimensions)}

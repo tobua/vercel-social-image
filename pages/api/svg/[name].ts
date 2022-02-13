@@ -34,5 +34,6 @@ export default async function handler(request: NextApiRequest, response: NextApi
   })
 
   response.setHeader('Content-Type', 'image/png')
+  response.setHeader('Cache-Control', 's-maxage=86400') // Cache for one day.
   response.send(pngData)
 }
